@@ -30,7 +30,7 @@ public class MainMenuController {
 
     public void onToCollection() {
 
-        CollectionView collectionView = new CollectionView();
+        CollectionView collectionView = new CollectionView(player.playerCollection, frame);
         frame.setContentPane(collectionView);
         new CollectionController(collectionView, frame, player, cardLibrary);
         frame.setVisible(true);

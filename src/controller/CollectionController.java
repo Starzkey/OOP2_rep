@@ -28,7 +28,7 @@ public class CollectionController {
 
     //Methods
     public void onToMainMenuView() {
-        MainMenuView mainMenuView = new MainMenuView(player);
+        MainMenuView mainMenuView = new MainMenuView(player, frame);
         frame.setContentPane(mainMenuView);
         new MainMenuController(mainMenuView, frame, player, cardLibrary);
         frame.setVisible(true); //Immer am Ende der Methode notwendig, damit Ansicht aktualisiert wird und man das neue Panel sieht.

@@ -4,17 +4,20 @@ import java.util.ArrayList;
 
 public class Card {
     //Attributes
-    public int value;
-    public String cardName;
-    public String[] categories;
+    private int value;
+    private String rarity;
+    private String cardName;
+    private String[] categories;
+
 
 
 
     //Constructors
-    public Card(int value, String cardName, String[] categories) {
+    public Card(int value, String cardName, String[] categories, String rarity) {
         this.value = value;
         this.cardName = cardName;
         this.categories = categories;
+        this.rarity = rarity;
     }
 
 
@@ -29,6 +32,10 @@ public class Card {
 
     public String[] getCategories() {
         return categories;
+    }
+
+    public String getRarity() {
+        return rarity;
     }
 
     public static String toStringCategories(String[] categories) {

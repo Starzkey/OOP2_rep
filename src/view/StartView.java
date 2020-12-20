@@ -9,9 +9,14 @@ public class StartView extends JPanel {
     //Attributes
     private JButton newGame;
     private JButton highScore;
+    private JFrame frame;
 
     //Constructors
-    public StartView() {
+    public StartView(JFrame frame) {
+
+        this.frame = frame;
+
+
         init();
     }
 

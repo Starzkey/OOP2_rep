@@ -15,7 +15,7 @@ public class MainMenuView extends JPanel {
     private Player player;
 
     //Constructors
-    public MainMenuView(Player player) {
+    public MainMenuView(Player player, JFrame frame) {
 
         this.player = player;
 

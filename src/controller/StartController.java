@@ -32,7 +32,7 @@ public class StartController {
 
     //Methods
     public void onNewGame() {
-        NameView nameView = new NameView();	//NameView-Panel-Objekt 
+        NameView nameView = new NameView(frame);	//NameView-Panel-Objekt
         frame.setContentPane(nameView);
         new NameController(nameView, frame, cardLibrary);
         frame.setVisible(true); //Immer am Ende der Methode notwendig, damit Ansicht aktualisiert wird und man das neue Panel sieht.

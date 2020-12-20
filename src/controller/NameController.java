@@ -41,7 +41,7 @@ public class NameController {
         player = new Player(playerName, playerBalance, playerCollection);
 
 
-        MainMenuView mainMenuView = new MainMenuView(player);
+        MainMenuView mainMenuView = new MainMenuView(player, frame);
         frame.setContentPane(mainMenuView);
         new MainMenuController(mainMenuView, frame, player, cardLibrary);
         frame.setVisible(true);

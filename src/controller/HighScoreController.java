@@ -22,7 +22,7 @@ public class HighScoreController {
 
     public void onToStartView() {
 
-            StartView startView = new StartView();
+            StartView startView = new StartView(frame);
             frame.setContentPane(startView);
             new StartController(startView, frame, cardLibrary);
             frame.setVisible(true); //Immer am Ende der Methode notwendig, damit Ansicht aktualisiert wird und man das neue Panel sieht.

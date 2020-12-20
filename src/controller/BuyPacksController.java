@@ -44,7 +44,7 @@ public class BuyPacksController  {
 
     //Methods
     public void onToMainMenuView() {
-        MainMenuView mainMenuView = new MainMenuView(player);
+        MainMenuView mainMenuView = new MainMenuView(player, frame);
         frame.setContentPane(mainMenuView);
         new MainMenuController(mainMenuView, frame, player, cardLibrary);
         frame.setVisible(true); //Immer am Ende der Methode notwendig, damit Ansicht aktualisiert wird und man das neue Panel sieht.
@@ -77,12 +77,12 @@ public class BuyPacksController  {
                 }
             }
 
-            String[] columnNames = {"Card Name", "value", "categories"};
-            Object[][] rowData = new Object[5][3];
+            String[] columnNames = {"Card Name", "Value", "Categories", "Rarity"};
+            Object[][] rowData = new Object[5][4];
             for(int i = 0; i < 5; i++) {
-                for(int j = 0; j < 3; j++) {
+                for(int j = 0; j < 4; j++) {
                 rowData[i] = new Object[] {drawnCards.get(i).getCardName(), drawnCards.get(i).getValue(),
-                        toStringCategories(drawnCards.get(i).getCategories())};
+                        toStringCategories(drawnCards.get(i).getCategories()), drawnCards.get(i).getRarity()};
                 }
             }
 

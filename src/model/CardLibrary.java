@@ -16,35 +16,35 @@ public class CardLibrary {
 
         //loadCommonCards
 
-        Card bauer = new Card(10,"Bauer", new String[]{"Krieger", "Mensch"});
+        Card bauer = new Card(10,"Bauer", new String[]{"Krieger", "Mensch"}, "common");
         commonCards.add(bauer);
 
-        Card moench = new Card(10,"Moench", new String[]{"Priester", "Mensch"});
+        Card moench = new Card(10,"Moench", new String[]{"Priester", "Mensch",}, "common");
         commonCards.add(moench);
 
-        Card fieserGoblin = new Card(10,"fieser Goblin", new String[]{"Dieb", "Monster"});
+        Card fieserGoblin = new Card(10,"fieser Goblin", new String[]{"Dieb", "Monster"}, "common");
         commonCards.add(fieserGoblin);
 
         //loadUncommonCards
 
-        Card zwergAxtschwinger = new Card( 20,"Zwergen-Axtschwinger", new String[]{"Krieger", "Zwerg"});
+        Card zwergAxtschwinger = new Card( 20,"Zwergen-Axtschwinger", new String[]{"Krieger", "Zwerg"}, "uncommon");
         uncommonCards.add(zwergAxtschwinger);
 
-        Card ritter = new Card( 20,"Ritter", new String[]{"Krieger", "Mensch"});
+        Card ritter = new Card( 20,"Ritter", new String[]{"Krieger", "Mensch"}, "uncommon");
         uncommonCards.add(ritter);
 
-        Card minotaur = new Card( 20,"Minotaur", new String[]{"Bogenschuetze", "Monster"});
+        Card minotaur = new Card( 20,"Minotaur", new String[]{"Bogenschuetze", "Monster"}, "uncommon");
         uncommonCards.add(minotaur);
 
         //loadRareCards
 
-        Card mystischerDrache = new Card(50, "Mystischer Drache", new String[]{"Drache", "Magier"});
+        Card mystischerDrache = new Card(50, "Mystischer Drache", new String[]{"Drache", "Magier"}, "rare");
         rareCards.add(mystischerDrache);
 
-        Card uralterMagier = new Card(50, "Mystischer Drache", new String[]{"Mensch", "Magier"});
+        Card uralterMagier = new Card(50, "Mystischer Drache", new String[]{"Mensch", "Magier"}, "rare");
         rareCards.add(uralterMagier);
 
-        Card meisterdieb = new Card(50, "Meisterdieb", new String[]{"Mensch", "Dieb"});
+        Card meisterdieb = new Card(50, "Meisterdieb", new String[]{"Mensch", "Dieb"}, "rare");
         rareCards.add(meisterdieb);
 
     }

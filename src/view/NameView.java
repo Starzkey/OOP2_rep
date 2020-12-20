@@ -10,7 +10,7 @@ public class NameView extends JPanel {
     private JTextField nameField;
     private JLabel nameLabel;
     //Constructor
-    public NameView() {
+    public NameView(JFrame frame) {
         init();
     }
 
