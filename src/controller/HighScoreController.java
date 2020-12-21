@@ -11,7 +11,6 @@ public class HighScoreController {
     //Attributes
     private HighScoreView view;		//Variable von StartView (Panel-Objekt)
     private JFrame frame;
-    private CardLibrary cardLibrary;
     //Constructors
     public HighScoreController(HighScoreView view, JFrame frame) { //Konstruktor
         this.view = view;
@@ -24,7 +23,7 @@ public class HighScoreController {
 
             StartView startView = new StartView(frame);
             frame.setContentPane(startView);
-            new StartController(startView, frame, cardLibrary);
+            new StartController(startView, frame);
             frame.setVisible(true); //Immer am Ende der Methode notwendig, damit Ansicht aktualisiert wird und man das neue Panel sieht.
 
     }

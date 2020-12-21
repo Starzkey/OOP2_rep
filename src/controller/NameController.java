@@ -14,8 +14,6 @@ public class NameController {
     private NameView view;
     private JFrame frame;
 
-    private CardLibrary cardLibrary;
-
     //Player Attributes
     String playerName;
     int playerBalance;
@@ -23,10 +21,9 @@ public class NameController {
     private Player player;
 
     //Contstructors
-    public NameController(NameView view, JFrame frame, CardLibrary cardLibrary) {
+    public NameController(NameView view, JFrame frame) {
         this.view = view;
         this.frame = frame;
-        this.cardLibrary = cardLibrary;
 
         this.view.registerNameButtonListener(e -> onSavePlayerName(view.getNameField()));
 
@@ -43,7 +40,7 @@ public class NameController {
 
         MainMenuView mainMenuView = new MainMenuView(player, frame);
         frame.setContentPane(mainMenuView);
-        new MainMenuController(mainMenuView, frame, player, cardLibrary);
+        new MainMenuController(mainMenuView, frame, player);
         frame.setVisible(true);
 
     }

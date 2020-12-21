@@ -1,6 +1,8 @@
 package view;
 
 import model.Card;
+import model.CardLibrary;
+import model.Player;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -14,26 +16,57 @@ public class CollectionView extends JPanel {
     private CardListView cardListView;
     private JLabel collectionWelcome;
     private ArrayList<Card> cardList;
+    private Player player;
+    private JList selectedCardsOverview;
+    private ArrayList<Card> selectedCards;
+
 
 
     //Constructors
-    public CollectionView(ArrayList<Card> playerCollection, JFrame frame) {
+    public CollectionView(Player player, JFrame frame) {
 
-        this.cardList = playerCollection;
+        this.player = player;
+        this.cardList = player.playerCollection;
         this.frame = frame;
+
+        selectedCards = new ArrayList<Card>();
+
+
 
         init();
     }
 
+    public CollectionView(Player player, JFrame frame, ArrayList<Card> selectedCards) {
+
+        this.player = player;
+        this.cardList = player.playerCollection;
+        this.frame = frame;
+        this.selectedCards = selectedCards;
+
+        init();
+    }
+
+
     //Methods
     public void init() {
 
+        selectedCardsOverview = new JList(getCardNames().toArray());
         returnButton = new JButton("Return");
-        cardListView = new CardListView(cardList, frame);
-
+        cardListView = new CardListView(player, frame, selectedCards);
 
         add(returnButton);
         add(cardListView);
+        add(selectedCardsOverview);
+    }
+
+    public ArrayList<String> getCardNames() {
+
+        ArrayList<String> cardNames = new ArrayList<>();
+
+        for(int i = 0; i<selectedCards.size(); i++) {
+            cardNames.add(selectedCards.get(i).getCardName());
+        }
+        return cardNames;
     }
 
     //register-Methods

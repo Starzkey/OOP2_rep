@@ -15,7 +15,7 @@ public class MainMenuController {
     private CardLibrary cardLibrary;
 
     //Constructors
-    public MainMenuController(MainMenuView view, JFrame frame, Player player, CardLibrary cardLibrary) {
+    public MainMenuController(MainMenuView view, JFrame frame, Player player) {
         this.view = view;
         this.frame = frame;
         this.player = player;
@@ -26,13 +26,22 @@ public class MainMenuController {
 
     }
 
+/*    public MainMenuController(MainMenuView view, JFrame frame, Player player) {
+        this.view = view;
+        this.frame = frame;
+        this.player = player;
+
+        this.view.registerToCollectionListener(e -> onToCollection());
+        this.view.registerToBuyPacksListener(e -> onToBuyPacks());
+    } */
+
     //Methods
 
     public void onToCollection() {
 
-        CollectionView collectionView = new CollectionView(player.playerCollection, frame);
+        CollectionView collectionView = new CollectionView(player, frame);
         frame.setContentPane(collectionView);
-        new CollectionController(collectionView, frame, player, cardLibrary);
+        new CollectionController(collectionView, frame, player);
         frame.setVisible(true);
 
     }
@@ -41,7 +50,7 @@ public class MainMenuController {
 
         BuyPacksView buyPacksView = new BuyPacksView(player);
         frame.setContentPane(buyPacksView);
-        new BuyPacksController(buyPacksView, frame, player, cardLibrary);
+        new BuyPacksController(buyPacksView, frame, player);
         frame.setVisible(true);
 
     }

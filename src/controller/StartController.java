@@ -12,13 +12,13 @@ public class StartController {
     //Attributes
     private StartView view;		//Variable von StartView (Panel-Objekt)
     private JFrame frame;
-    private CardLibrary cardLibrary;
+
 
     //Constructors
-    public StartController(StartView view, JFrame frame, CardLibrary cardLibrary) { //Konstruktor
+    public StartController(StartView view, JFrame frame) { //Konstruktor
         this.view = view;
         this.frame = frame;
-        this.cardLibrary = cardLibrary;
+
 
    /*   this.view.registerNewGameListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -34,7 +34,7 @@ public class StartController {
     public void onNewGame() {
         NameView nameView = new NameView(frame);	//NameView-Panel-Objekt
         frame.setContentPane(nameView);
-        new NameController(nameView, frame, cardLibrary);
+        new NameController(nameView, frame);
         frame.setVisible(true); //Immer am Ende der Methode notwendig, damit Ansicht aktualisiert wird und man das neue Panel sieht.
 
     }

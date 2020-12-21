@@ -14,8 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CardLibrary cardLibrary = new CardLibrary(); //Erstellt CardLibrary, auf welche zukünftig zugegriffen wird
-        new CardsOfLegendsFrame(cardLibrary);
+        new CardsOfLegendsFrame();
 
     }
 }

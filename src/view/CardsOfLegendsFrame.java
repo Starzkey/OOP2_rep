@@ -8,10 +8,9 @@ import java.awt.*;
 
 public class CardsOfLegendsFrame extends JFrame{
 
-    private CardLibrary cardLibrary;
 
-    public CardsOfLegendsFrame(CardLibrary cardLibrary) {
-        this.cardLibrary = cardLibrary;
+
+    public CardsOfLegendsFrame() {
 
         init();
     }
@@ -27,7 +26,7 @@ public class CardsOfLegendsFrame extends JFrame{
         StartView view = new StartView(frame);				//Panel Objekt erstellen
 
         frame.add(view);								//...dieses dem Frame geaddet
-        new StartController(view, frame, cardLibrary);	//neues Objekt der StartController Klasse (Listener)
-        frame.setVisible(true);//zeigt das Fenster an
+        new StartController(view, frame);	//neues Objekt der StartController Klasse (Listener)
+        frame.setVisible(true);                         //zeigt das Fenster an
     }
 }

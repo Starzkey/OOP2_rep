@@ -32,8 +32,8 @@ public class BuyPacksController  {
 
 
     //Constructors
-    public BuyPacksController(BuyPacksView view, JFrame frame, Player player, CardLibrary cardLibrary) {
-        this.cardLibrary = cardLibrary; //Frage an Michi: Kann man das bereits bei Spielstart laden?
+    public BuyPacksController(BuyPacksView view, JFrame frame, Player player) {
+        cardLibrary = new CardLibrary(); //Frage an Michi: Kann man das bereits bei Spielstart laden?
         this.view = view;
         this.frame = frame;
         this.player = player;
@@ -46,7 +46,7 @@ public class BuyPacksController  {
     public void onToMainMenuView() {
         MainMenuView mainMenuView = new MainMenuView(player, frame);
         frame.setContentPane(mainMenuView);
-        new MainMenuController(mainMenuView, frame, player, cardLibrary);
+        new MainMenuController(mainMenuView, frame, player);
         frame.setVisible(true); //Immer am Ende der Methode notwendig, damit Ansicht aktualisiert wird und man das neue Panel sieht.
     }
 
@@ -96,7 +96,7 @@ public class BuyPacksController  {
             buyPacksView.remove(buyPacksView.getWelcomeLabel());
             buyPacksView.add(scrollPane);
             frame.setContentPane(buyPacksView);
-            new BuyPacksController(buyPacksView, frame, player, cardLibrary);
+            new BuyPacksController(buyPacksView, frame, player);
             frame.setVisible(true);
         }
 

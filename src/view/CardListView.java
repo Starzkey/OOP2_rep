@@ -1,6 +1,9 @@
 package view;
 
+import controller.CardController;
 import model.Card;
+import model.CardLibrary;
+import model.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,17 +16,21 @@ public class CardListView extends JPanel {
 
     private ArrayList<Card> cardList;
     private JFrame frame;
+    private Player player;
+    private ArrayList<Card> selectedCards;
 
     private JButton prevPage;
     private JButton nextPage;
 
 
+
     //Constructors
 
-    public CardListView(ArrayList<Card> cardList, JFrame frame) {
-
-        this.cardList = cardList;
+    public CardListView(Player player, JFrame frame, ArrayList<Card> selectedCards) {
+        this.player = player;
+        this.cardList = player.playerCollection;
         this.frame = frame;
+        this.selectedCards = selectedCards;
 
         init();
     }
@@ -31,14 +38,17 @@ public class CardListView extends JPanel {
     //Methods
     public void init() {
 
-        GridLayout layout = new GridLayout(6,5);
+        GridLayout layout = new GridLayout(10,10);
         setLayout(layout);
+        setAlignmentX(10);
         layout.setHgap(5);
         layout.setVgap(5);
         frame.setVisible(true);
 
         for (Card card : cardList) {
-            CardView loadCard = new CardView(card.getValue(), card.getCardName(), card.getCategories(), card.getRarity());
+            CardView loadCard = new CardView(card.getValue(), card.getCardName(), card.getCategories(), card.getRarity(), frame);
+            new CardController(loadCard, frame, player, card, selectedCards);
+
             loadCard.setBorder(BorderFactory.createLineBorder(Color.black));
 
             add(loadCard);
@@ -52,7 +62,7 @@ public class CardListView extends JPanel {
 
     //register-Methods
 
-    public void registerprevPageListener(ActionListener listener){
+    public void registerPrevPageListener(ActionListener listener){
         prevPage.addActionListener(listener); }
 
     public void registerNextPageListener(ActionListener listener) {
