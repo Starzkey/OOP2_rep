@@ -59,9 +59,9 @@ public class CardView extends JPanel {
         return markCard;
     }
 
-    /* public void registerMarkCardListener(ActionListener listener) {
+    public void registerMarkCardListener(ActionListener listener) {
         markCard.addActionListener(listener);
-    } */
+    }
 
     public void registerSellCardListener(ActionListener listener) {
         sellCard.addActionListener(listener);

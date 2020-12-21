@@ -33,10 +33,10 @@ public class CardController {
         this.selectedCards = selectedCards;
 
 
-        //this.view.registerMarkCardListener(e -> onMarkCard(thisCard, selectedCards));
+        this.view.registerMarkCardListener(e -> onMarkCard(thisCard, selectedCards));
         this.view.registerSellCardListener(e -> onSellCard(player, thisCard));
 
-        this.view.registerMarkCardItemListener(e -> {
+        /*this.view.registerMarkCardItemListener(e -> {
 
             int state = e.getStateChange();
 
@@ -44,7 +44,6 @@ public class CardController {
 
                 onMarkCard(thisCard, selectedCards);
 
-                view.getMarkCard().setText("Unselect Card");
 
                 System.out.println("a");
 
@@ -55,26 +54,37 @@ public class CardController {
                 System.out.println("b");
 
             }
-        });
+        }); */
 
 
     }
 
 
-    public void onMarkCard(Card thisCard, ArrayList<Card> selectedCards) {
+    public void onMarkCard(Card thisCard, ArrayList<Card> selectedCards) { //Momentan kann man doppelte Karten nicht selecten / toggleButton geht nicht weil view immer neu geladen wird
+
+
 
         if(selectedCards.contains(thisCard)) {
 
+            selectedCards.remove(thisCard);
+
+            CollectionView collectionView = new CollectionView(player, frame, selectedCards);
+            frame.setContentPane(collectionView);
+            new CollectionController(collectionView, frame, player);
+            frame.setVisible(true);
+
         } else {
             selectedCards.add(thisCard);
+
+            CollectionView collectionView = new CollectionView(player, frame, selectedCards);
+            view.getMarkCard().setText("Unselect Card");
+            frame.setVisible(true);
+
+            frame.setContentPane(collectionView);
+            new CollectionController(collectionView, frame, player);
+            frame.setVisible(true);
+
         }
-
-        CollectionView collectionView = new CollectionView(player, frame, selectedCards);
-        frame.setContentPane(collectionView);
-        new CollectionController(collectionView, frame, player);
-        frame.setVisible(true);
-
-
     }
 
     public void onDeselectCard(Card thisCard, ArrayList<Card> selectedCards) {
@@ -84,6 +94,7 @@ public class CardController {
         } else {
 
         }
+
 
     }
 

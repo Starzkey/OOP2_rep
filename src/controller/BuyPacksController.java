@@ -93,7 +93,7 @@ public class BuyPacksController  {
             JScrollPane scrollPane = new JScrollPane(drawnCardsTable);
 
             BuyPacksView buyPacksView = new BuyPacksView(player);
-            buyPacksView.remove(buyPacksView.getWelcomeLabel());
+            buyPacksView.remove(buyPacksView.getWelcomeLabel()); //Hä?? TODO Komischer Bug wo das Label in MainMenuView auftaucht.
             buyPacksView.add(scrollPane);
             frame.setContentPane(buyPacksView);
             new BuyPacksController(buyPacksView, frame, player);

@@ -19,7 +19,7 @@ public class CollectionView extends JPanel {
     private Player player;
     private JList selectedCardsOverview;
     private ArrayList<Card> selectedCards;
-
+    private JButton sellSelectedCards;
 
 
     //Constructors
@@ -53,10 +53,12 @@ public class CollectionView extends JPanel {
         selectedCardsOverview = new JList(getCardNames().toArray());
         returnButton = new JButton("Return");
         cardListView = new CardListView(player, frame, selectedCards);
+        sellSelectedCards = new JButton("sell selected Cards");
 
         add(returnButton);
         add(cardListView);
         add(selectedCardsOverview);
+        add(sellSelectedCards);
     }
 
     public ArrayList<String> getCardNames() {
