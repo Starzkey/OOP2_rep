@@ -9,11 +9,10 @@ public class CardListController {
     private JFrame frame;
     private CardListView view;
 
-
     public CardListController(JFrame frame, CardListView view) {
+
         this.frame = frame;
         this.view = view;
-
 
     }
 

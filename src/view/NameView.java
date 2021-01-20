@@ -9,8 +9,9 @@ public class NameView extends JPanel {
     private JButton nameButton;
     private JTextField nameField;
     private JLabel nameLabel;
+
     //Constructor
-    public NameView(JFrame frame) {
+    public NameView() {
         init();
     }
 
@@ -27,7 +28,6 @@ public class NameView extends JPanel {
     public JTextField getNameField() {
         return nameField;
     }
-
 
     //register-Methods
     public void registerNameButtonListener(ActionListener listener) {

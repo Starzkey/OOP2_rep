@@ -1,23 +1,23 @@
 package controller;
 
 import model.CardLibrary;
+import model.Mission;
 import model.Player;
-import model.Card;
+import utils.MissionGenerator;
 import view.MainMenuView;
 import view.NameView;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class NameController {
-    //Attributes
-    private NameView view;
-    private JFrame frame;
-
     //Player Attributes
     String playerName;
     int playerBalance;
-    ArrayList<Card> playerCollection;
+    //Attributes
+    private NameView view;
+    private JFrame frame;
     private Player player;
 
     //Contstructors
@@ -35,21 +35,40 @@ public class NameController {
         playerName = nameField.getText();
         playerBalance = 1000;
 
-        player = new Player(playerName, playerBalance, playerCollection);
+        player = new Player(playerName, playerBalance, new ArrayList<>());
+        CardLibrary cardLibrary = new CardLibrary();
 
+        ArrayList<Mission> allMissions = loadMissions();
+        ArrayList<Mission> currentMissions = new ArrayList<>();
 
-        MainMenuView mainMenuView = new MainMenuView(player, frame);
+        Collections.shuffle(allMissions);
+
+        for (int i = 0; i < 3; i++) {
+
+            currentMissions.add(allMissions.get(i));
+
+        }
+
+        MainMenuView mainMenuView = new MainMenuView(player, currentMissions);
         frame.setContentPane(mainMenuView);
-        new MainMenuController(mainMenuView, frame, player);
+        new MainMenuController(mainMenuView, frame, player, currentMissions);
         frame.setVisible(true);
 
     }
 
+    public ArrayList<Mission> loadMissions() {
 
+        ArrayList<Mission> allMissions = new ArrayList<>();
 
-    public void onToMainMenu() {
-         //Methode in onSavePlayerName() geschoben, weil pro JElement nur ein ActionListener registriert werden kann.
+        Mission thiefMission = MissionGenerator.generateRandomMission();
+        allMissions.add(thiefMission);
 
+        Mission armsMission = MissionGenerator.generateRandomMission();
+        allMissions.add(armsMission);
+
+        Mission armsMission2 = MissionGenerator.generateRandomMission();
+        allMissions.add(armsMission2);
+
+        return allMissions;
     }
-
 }

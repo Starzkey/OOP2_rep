@@ -1,7 +1,6 @@
 package view;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StartView extends JPanel {
@@ -9,13 +8,9 @@ public class StartView extends JPanel {
     //Attributes
     private JButton newGame;
     private JButton highScore;
-    private JFrame frame;
 
     //Constructors
-    public StartView(JFrame frame) {
-
-        this.frame = frame;
-
+    public StartView() {
 
         init();
     }
@@ -33,6 +28,7 @@ public class StartView extends JPanel {
     public void registerNewGameListener(ActionListener listener) {
         newGame.addActionListener(listener);
     }
+
     public void registerHighScoreListener(ActionListener listener) {
         highScore.addActionListener(listener);
     }

@@ -1,37 +1,86 @@
 package model;
-import model.Card;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class Player {
-    //Attributes
-    public String playerName;
-    public int playerBalance;
-    public ArrayList<Card> playerCollection;
+    private String name;
+    private int balance;
+    private ArrayList<Card> collection;
+    private ArrayList<Mission> missions;
+    private PropertyChangeSupport changes = new PropertyChangeSupport(this);
 
     //Constructors
-    public Player(String playerName, int playerBalance, ArrayList<Card> playerCollection) {
+    public Player(String name, int balance, ArrayList<Card> collection) {
 
-        playerCollection = new ArrayList<>();
-
-        this.playerName = playerName;
-        this.playerBalance = playerBalance;
-        this.playerCollection = playerCollection;
-
+        this.name = name;
+        this.balance = balance;
+        this.collection = collection;
+        this.missions = new ArrayList<>();
 
     }
 
     //Methods
-    public int getPlayerBalance() {
-        return playerBalance;
+    public String getName() {
+        return name;
     }
 
-    //Diese Methode braucht Abruf von playerCollection von Player, da nur Karten aus playerCollection verkauft werden können.
-    /*public void sellCard(Card soldCard, Player player) { //Verkauft eine einzelne Karte
-        soldCard.amount -= 1;
-        player.playerBalance += soldCard.value;
-        System.out.println("Die Karte " + soldCard.cardName + " wurde für " + soldCard.value + " verkauft.");
+    public void setName(String name) {
+        String oldValue = this.name;
+        this.name = name;
+        changes.firePropertyChange("name", oldValue, this.name);
     }
 
-     */
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        int oldValue = this.balance;
+        this.balance = balance;
+        changes.firePropertyChange("balance", oldValue, this.balance);
+    }
+
+    public ArrayList<Card> getCollection() {
+        return new ArrayList<>(collection);
+    }
+
+    public ArrayList<Mission> getMissions() {
+        return new ArrayList<>(missions);
+    }
+
+    public void addCard(Card card) {
+        ArrayList<Card> oldValue = new ArrayList<>(this.collection);
+        collection.add(card);
+        changes.firePropertyChange("collection", oldValue, new ArrayList<>(this.collection));
+    }
+
+    public ArrayList<Card> removeCard(Card card) {
+        ArrayList<Card> oldValue = new ArrayList<>(this.collection);
+        collection.remove(card);
+        changes.firePropertyChange("collection", oldValue, new ArrayList<>(this.collection));
+        return collection;
+    }
+
+    public void addMission(Mission mission) {
+        ArrayList<Mission> oldValue = this.missions;
+        missions.add(mission);
+        changes.firePropertyChange("missions", oldValue, this.missions);
+    }
+
+    public void removeMission(Mission mission) {
+        ArrayList<Mission> oldValue = this.missions;
+        missions.remove(mission);
+        changes.firePropertyChange("missions", oldValue, this.missions);
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener l) {
+        changes.addPropertyChangeListener(l);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener l) {
+        changes.removePropertyChangeListener(l);
+    }
+
 }

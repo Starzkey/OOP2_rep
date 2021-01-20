@@ -12,7 +12,6 @@ public class DialogField extends JDialog {
     Object[] options;
     int playerAnswer;
 
-
     public DialogField(JFrame frame, String question, String questionTitle, Object[] options) {
 
         this.frame = frame;
@@ -26,10 +25,9 @@ public class DialogField extends JDialog {
 
         JDialog d = new JDialog(frame, questionTitle);
 
-
         jOptionPane = new JOptionPane();
         d.add(jOptionPane);
-        playerAnswer = jOptionPane.showOptionDialog(frame, question, questionTitle, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+        playerAnswer = JOptionPane.showOptionDialog(frame, question, questionTitle, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
 
     }
 

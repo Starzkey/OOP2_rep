@@ -1,6 +1,5 @@
 package view;
 
-import controller.BuyPacksController;
 import model.Player;
 
 import javax.swing.*;
@@ -16,8 +15,6 @@ public class BuyPacksView extends JPanel {
     private JButton buyPack2;
     private JLabel welcomeLabel;
 
-
-
     //Constructors
     public BuyPacksView(Player player) {
         this.player = player;
@@ -25,12 +22,10 @@ public class BuyPacksView extends JPanel {
         init();
     }
 
-
-
     //Methods
     public void init() {
 
-        balanceOverview = new JLabel("Balance: " + player.getPlayerBalance());
+        balanceOverview = new JLabel("Balance: " + player.getBalance());
         returnButton = new JButton("Return");
         buyPack1 = new JButton("Buy Pack 1");
         welcomeLabel = new JLabel("Kaufe hier deine Karten! ");
@@ -50,6 +45,9 @@ public class BuyPacksView extends JPanel {
     public void registerReturnButtonListener(ActionListener listener) {
         returnButton.addActionListener(listener);
     }
-    public void registerBuyPack1Listener(ActionListener listener) {buyPack1.addActionListener(listener);}
+
+    public void registerBuyPack1Listener(ActionListener listener) {
+        buyPack1.addActionListener(listener);
+    }
 
 }

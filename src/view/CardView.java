@@ -1,73 +1,87 @@
 package view;
 
+import model.Card;
+import model.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
-public class CardView extends JPanel {
+public class CardView extends JPanel implements PropertyChangeListener {
 
     //Attributes
-    JFrame frame;
-
-    private int value;
-    private String rarity;
-    private String cardName;
-    private String[] categories;
-
-    private JToggleButton markCard;
+    private JFrame frame;
+    private Player player;
+    private Card card;
+    private JToggleButton selectCard;
     private JButton sellCard;
-    private JLabel valueOverview;
-    private JLabel cardNameOverview;
-    private JList<String> categoriesOverview;
-    private JLabel rarityOverview;
-
+    private JLabel valueLabel;
+    private JLabel nameLabel;
+    private JList<String> categories;
+    private JLabel rarityLabel;
 
     //Constructors
-    public CardView(int value, String cardName, String[] categories, String rarity, JFrame frame) {
-
+    public CardView(Card card, JFrame frame, Player player) {
+        this.card = card;
         this.frame = frame;
-        this.value = value;
-        this.rarity = rarity;
-        this.cardName = cardName;
-        this.categories = categories;
+        this.player = player;
 
         init();
+
+        this.card.addPropertyChangeListener(this);
     }
 
     //Methods
-    public void init() {
+    private void init() {
+        selectCard = new JToggleButton(card.isSelected() ? "unselect card" : "select card", card.isSelected());
 
-        BorderLayout l = new BorderLayout();
-        markCard = new JToggleButton("select Card");
-        sellCard = new JButton("sell Card");
-        valueOverview = new JLabel(String.valueOf(value));
-        cardNameOverview = new JLabel(cardName);
-        categoriesOverview = new JList<>(categories);
-        rarityOverview = new JLabel(rarity);
+        sellCard = new JButton("sell card");
+        valueLabel = new JLabel(String.valueOf(card.getValue()));
+        nameLabel = new JLabel(card.getName());
+        categories = new JList<String>(Arrays.asList(card.getCategories()).stream().map(category -> category.toString()).toArray(String[]::new));
+        rarityLabel = new JLabel(card.getRarity());
 
-        add(valueOverview);
-        add(cardNameOverview);
-        add(categoriesOverview);
-        add(rarityOverview);
-        add(markCard);
+        add(valueLabel);
+        add(nameLabel);
+        add(categories);
+        add(rarityLabel);
+        add(selectCard);
         add(sellCard);
+        setBackground(getRarityColor());
     }
 
-    public JToggleButton getMarkCard() {
-        return markCard;
+    private Color getRarityColor() {
+        switch (card.getRarity()) {
+            case "common":
+                return Color.gray;
+            case "uncommon":
+                return Color.cyan;
+            case "rare":
+                return Color.blue;
+            default:
+                return Color.white;
+        }
     }
 
-    public void registerMarkCardListener(ActionListener listener) {
-        markCard.addActionListener(listener);
+    public void registerSelectCardListener(ActionListener listener) {
+        selectCard.addActionListener(listener);
     }
 
     public void registerSellCardListener(ActionListener listener) {
         sellCard.addActionListener(listener);
     }
 
-    public void registerMarkCardItemListener(ItemListener itemListener) {markCard.addItemListener(itemListener);}
-
-
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        switch (evt.getPropertyName()) {
+            case "selected":
+                selectCard.setSelected((boolean) evt.getNewValue());
+                selectCard.setText((boolean) evt.getNewValue() ? "unselect card" : "select card");
+        }
+    }
 }
